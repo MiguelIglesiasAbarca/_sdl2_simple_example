@@ -1,4 +1,4 @@
-#include <GL/glew.h>
+﻿#include <GL/glew.h>
 #include <chrono>
 #include <thread>
 #include <exception>
@@ -42,7 +42,7 @@ static void display_func() {
 	if (ImGui::BeginMainMenuBar()) {
 		if (ImGui::BeginMenu("Menu")) {
 			if (ImGui::MenuItem("adeu")) {
-				// ... codi activaci�
+				// ... codi activació
 			}
 			ImGui::EndMenu();
 		}
@@ -54,7 +54,7 @@ static void display_func() {
 }
 
 int main(int argc, char** argv) {
-	MyWindow window("SDL2 Simple Example", WINDOW_SIZE.x, WINDOW_SIZE.y);
+	MyWindow window("CHIMICHANGA ENGINE", WINDOW_SIZE.x, WINDOW_SIZE.y);
 
 	init_openGL();
 
