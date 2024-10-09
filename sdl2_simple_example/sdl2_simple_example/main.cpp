@@ -37,21 +37,50 @@ static void draw_triangle(const u8vec4& color, const vec3& center, double size) 
 static void draw_cube(const u8vec4& color) {
 	glColor4ub(color.r, color.g, color.b, color.a);
 	glLineWidth(2.0f);
-	glBegin(GL_LINES);
-	glVertex3f(0.f, 0.f, 0.f);
-	glVertex3f(0.f, .3f, 0.f);
+	glBegin(GL_TRIANGLES);  // draw a cube with 12 triangles
 
-	glVertex3f(0.f, 0.f, 0.f);
-	glVertex3f(.3f, 0.f, 0.f);
+	glRotatef(0.1f, 1.0f, 1.0f, 0.0f);
 
-	glVertex3f(.3f, 0.f, 0.f);
-	glVertex3f(.3f, .3f, 0.f);
+	float v0[3] = { -0.5f, -0.5f, -0.5f }; // vértice 0
+	float v1[3] = { 0.5f, -0.5f, -0.5f }; // vértice 1
+	float v2[3] = { 0.5f,  0.5f, -0.5f }; // vértice 2
+	float v3[3] = { -0.5f,  0.5f, -0.5f }; // vértice 3
+	float v4[3] = { -0.5f, -0.5f,  0.5f }; // vértice 4
+	float v5[3] = { 0.5f, -0.5f,  0.5f }; // vértice 5
+	float v6[3] = { 0.5f,  0.5f,  0.5f }; // vértice 6
+	float v7[3] = { -0.5f,  0.5f,  0.5f }; // vértice 7
 
-	glVertex3f(.3f, .3f, 0.f);
-	glVertex3f(0.f, .3f, 0.f);
+	// front face =================
+	glVertex3fv(v0);    // v0-v1-v2
+	glVertex3fv(v1);
+	glVertex3fv(v2);
+
+	glVertex3fv(v2);    // v2-v3-v0
+	glVertex3fv(v3);
+	glVertex3fv(v0);
+
+	// right face =================
+	glVertex3fv(v0);    // v0-v3-v4
+	glVertex3fv(v3);
+	glVertex3fv(v4);
+
+	glVertex3fv(v4);    // v4-v5-v0
+	glVertex3fv(v5);
+	glVertex3fv(v0);
+
+	// top face ===================
+	glVertex3fv(v0);    // v0-v5-v6
+	glVertex3fv(v5);
+	glVertex3fv(v6);
+
+	glVertex3fv(v6);    // v6-v1-v0
+	glVertex3fv(v1);
+	glVertex3fv(v0);
 
 
-	glEnd();
+
+
+		glEnd();
 }
 
 static void display_func() {
