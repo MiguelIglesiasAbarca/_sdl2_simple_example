@@ -34,6 +34,26 @@ static void draw_triangle(const u8vec4& color, const vec3& center, double size) 
 	glEnd();
 }
 
+static void draw_cube(const u8vec4& color) {
+	glColor4ub(color.r, color.g, color.b, color.a);
+	glLineWidth(2.0f);
+	glBegin(GL_LINES);
+	glVertex3f(0.f, 0.f, 0.f);
+	glVertex3f(0.f, .3f, 0.f);
+
+	glVertex3f(0.f, 0.f, 0.f);
+	glVertex3f(.3f, 0.f, 0.f);
+
+	glVertex3f(.3f, 0.f, 0.f);
+	glVertex3f(.3f, .3f, 0.f);
+
+	glVertex3f(.3f, .3f, 0.f);
+	glVertex3f(0.f, .3f, 0.f);
+
+
+	glEnd();
+}
+
 static void display_func() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	ImGui_ImplOpenGL3_NewFrame();
@@ -48,7 +68,7 @@ static void display_func() {
 		}
 		ImGui::EndMainMenuBar();
 	}
-	draw_triangle(u8vec4(255, 0, 0, 255), vec3(0.0, 0.0, 0.0), 0.5);
+	draw_cube(u8vec4(255, 0, 0, 235));
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
