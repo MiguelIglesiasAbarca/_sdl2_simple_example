@@ -4,6 +4,9 @@
 #include <exception>
 #include <glm/glm.hpp>
 #include "MyWindow.h"
+#include "imgui.h"
+#include "imgui_impl_sdl2.h"
+#include "imgui_impl_opengl3.h"
 using namespace std;
 
 using hrclock = chrono::high_resolution_clock;
@@ -33,7 +36,21 @@ static void draw_triangle(const u8vec4& color, const vec3& center, double size) 
 
 static void display_func() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplSDL2_NewFrame();
+	ImGui::NewFrame();
+	if (ImGui::BeginMainMenuBar()) {
+		if (ImGui::BeginMenu("Menu")) {
+			if (ImGui::MenuItem("adeu")) {
+				// ... codi activació
+			}
+			ImGui::EndMenu();
+		}
+		ImGui::EndMainMenuBar();
+	}
 	draw_triangle(u8vec4(255, 0, 0, 255), vec3(0.0, 0.0, 0.0), 0.5);
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
 int main(int argc, char** argv) {
