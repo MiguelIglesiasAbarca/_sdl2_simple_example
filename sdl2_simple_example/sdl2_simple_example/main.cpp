@@ -35,53 +35,73 @@ static void draw_triangle(const u8vec4& color, const vec3& center, double size) 
 }
 
 static void draw_cube(const u8vec4& color) {
-	glColor4ub(color.r, color.g, color.b, color.a);
-	glLineWidth(2.0f);
-	glBegin(GL_TRIANGLES);  // draw a cube with 12 triangles
+    
+    glRotatef(1.5f, 1.0f, 1.0f, 0.0f);
+    glBegin(GL_TRIANGLES);
 
-	glRotatef(0.1f, 1.0f, 1.0f, 0.0f);
+    // Frontal
+    glColor4ub(204, 255, 51, color.a);
+    glVertex3f(-0.5f, -0.5f, -0.5f);
+    glVertex3f(0.5f, -0.5f, -0.5f);
+    glVertex3f(0.5f, 0.5f, -0.5f);
 
-	float v0[3] = { -0.5f, -0.5f, -0.5f }; // vértice 0
-	float v1[3] = { 0.5f, -0.5f, -0.5f }; // vértice 1
-	float v2[3] = { 0.5f,  0.5f, -0.5f }; // vértice 2
-	float v3[3] = { -0.5f,  0.5f, -0.5f }; // vértice 3
-	float v4[3] = { -0.5f, -0.5f,  0.5f }; // vértice 4
-	float v5[3] = { 0.5f, -0.5f,  0.5f }; // vértice 5
-	float v6[3] = { 0.5f,  0.5f,  0.5f }; // vértice 6
-	float v7[3] = { -0.5f,  0.5f,  0.5f }; // vértice 7
+    glVertex3f(-0.5f, -0.5f, -0.5f);
+    glVertex3f(0.5f, 0.5f, -0.5f);
+    glVertex3f(-0.5f, 0.5f, -0.5f);
 
-	// front face =================
-	glVertex3fv(v0);    // v0-v1-v2
-	glVertex3fv(v1);
-	glVertex3fv(v2);
+    // Trasero
+    glColor4ub(0, 255, 51, color.a);
+    glVertex3f(-0.5f, -0.5f, 0.5f);
+    glVertex3f(0.5f, -0.5f, 0.5f);
+    glVertex3f(0.5f, 0.5f, 0.5f);
 
-	glVertex3fv(v2);    // v2-v3-v0
-	glVertex3fv(v3);
-	glVertex3fv(v0);
+    glVertex3f(-0.5f, -0.5f, 0.5f);
+    glVertex3f(0.5f, 0.5f, 0.5f);
+    glVertex3f(-0.5f, 0.5f, 0.5f);
 
-	// right face =================
-	glVertex3fv(v0);    // v0-v3-v4
-	glVertex3fv(v3);
-	glVertex3fv(v4);
+    // Izquierda
+    glColor4ub(0, 102, 255, color.a);
+    glVertex3f(-0.5f, -0.5f, -0.5f);
+    glVertex3f(-0.5f, 0.5f, -0.5f);
+    glVertex3f(-0.5f, 0.5f, 0.5f);
 
-	glVertex3fv(v4);    // v4-v5-v0
-	glVertex3fv(v5);
-	glVertex3fv(v0);
+    glVertex3f(-0.5f, -0.5f, -0.5f);
+    glVertex3f(-0.5f, 0.5f, 0.5f);
+    glVertex3f(-0.5f, -0.5f, 0.5f);
 
-	// top face ===================
-	glVertex3fv(v0);    // v0-v5-v6
-	glVertex3fv(v5);
-	glVertex3fv(v6);
+    // Derecha
+    glColor4ub(255, 0, 102, color.a);
+    glVertex3f(0.5f, -0.5f, -0.5f);
+    glVertex3f(0.5f, 0.5f, -0.5f);
+    glVertex3f(0.5f, 0.5f, 0.5f);
 
-	glVertex3fv(v6);    // v6-v1-v0
-	glVertex3fv(v1);
-	glVertex3fv(v0);
+    glVertex3f(0.5f, -0.5f, -0.5f);
+    glVertex3f(0.5f, 0.5f, 0.5f);
+    glVertex3f(0.5f, -0.5f, 0.5f);
 
+    // Arriba
+    glColor4ub(255, 0, 102, color.a);
+    glVertex3f(-0.5f, 0.5f, -0.5f);
+    glVertex3f(0.5f, 0.5f, -0.5f);
+    glVertex3f(0.5f, 0.5f, 0.5f);
 
+    glVertex3f(-0.5f, 0.5f, -0.5f);
+    glVertex3f(0.5f, 0.5f, 0.5f);
+    glVertex3f(-0.5f, 0.5f, 0.5f);
 
+    // Abajo
+    glColor4ub(0, 51, 102, color.a);
+    glVertex3f(-0.5f, -0.5f, -0.5f);
+    glVertex3f(0.5f, -0.5f, -0.5f);
+    glVertex3f(0.5f, -0.5f, 0.5f);
 
-		glEnd();
+    glVertex3f(-0.5f, -0.5f, -0.5f);
+    glVertex3f(0.5f, -0.5f, 0.5f);
+    glVertex3f(-0.5f, -0.5f, 0.5f);
+
+    glEnd();
 }
+
 
 static void display_func() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
